@@ -1,6 +1,6 @@
 # Project 6 - *Instasnap*
 
-**Instagram** is a photo sharing app using Parse as its backend.
+**Instasnap** is a photo sharing app using Parse as its backend.
 
 Time spent: **X** hours spent in total
 
@@ -16,7 +16,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Show the username and creation time for each post
+- [X] Show the username and creation time for each post
 - [ ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse.
 - [ ] User Profiles:
     - [ ] Allow the logged in user to add a profile photo
@@ -46,7 +46,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright [2016] [Grace Egbo]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

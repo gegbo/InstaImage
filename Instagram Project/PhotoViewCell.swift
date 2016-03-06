@@ -12,6 +12,11 @@ class PhotoViewCell: UITableViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var timestamp: UILabel!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    
+    var createdAt: NSDate?
     
 
     override func awakeFromNib() {

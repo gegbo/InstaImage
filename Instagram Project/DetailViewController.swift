@@ -32,6 +32,7 @@ class DetailViewController: UIViewController, UITableViewDataSource,UITableViewD
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) -> Void in
             if let posts = posts {
                 // do something with the data fetched
+                //print(posts)
                 self.photos = posts
                 self.tableView.reloadData()
             } else {
@@ -90,9 +91,53 @@ class DetailViewController: UIViewController, UITableViewDataSource,UITableViewD
             }
         }
         cell.captionLabel?.text = photo.valueForKey("caption") as? String
+        cell.username.text = PFUser.currentUser()!.username! as String
+        
+        let timestampString = photo.valueForKey("createdAt") as? NSDate
+        
+        if let timestampString = timestampString
+        {
+            
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "y M d HH:mm:ss Z"
+            
+            cell.timestamp.text = calculateTimeStamp((timestampString.timeIntervalSinceNow))
+        }
+        
         return cell
         
     }
+    
+    func calculateTimeStamp(timeTweetPostedAgo: NSTimeInterval) -> String {
+        // Turn timeTweetPostedAgo into seconds, minutes, hours, days, or years
+        var rawTime = Int(timeTweetPostedAgo)
+        var timeAgo: Int = 0
+        var timeChar = ""
+        
+        rawTime = rawTime * (-1)
+        
+        // Figure out time ago
+        if (rawTime <= 60) { // SECONDS
+            timeAgo = rawTime
+            timeChar = "s"
+        } else if ((rawTime/60) <= 60) { // MINUTES
+            timeAgo = rawTime/60
+            timeChar = "m"
+        } else if (rawTime/60/60 <= 24) { // HOURS
+            timeAgo = rawTime/60/60
+            timeChar = "h"
+        } else if (rawTime/60/60/24 <= 365) { // DAYS
+            timeAgo = rawTime/60/60/24
+            timeChar = "d"
+        } else if (rawTime/(3153600) <= 1) { // YEARS
+            timeAgo = rawTime/60/60/24/365
+            timeChar = "y"
+        }
+        
+        return "\(timeAgo)\(timeChar)"
+        
+    }
+    
     /*
     // MARK: - Navigation
 

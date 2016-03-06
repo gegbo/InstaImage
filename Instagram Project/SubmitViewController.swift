@@ -60,6 +60,10 @@ class SubmitViewController: UIViewController,UIImagePickerControllerDelegate,UIN
                 print("Successfully uploaded image!")
             }
         }
+        else
+        {
+            self.performSegueWithIdentifier("detailView", sender: nil)
+        }
         
         
     }
