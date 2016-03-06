@@ -28,6 +28,7 @@ class UserMedia: NSObject {
         
         // Add relevant fields to the object
         media["media"] = getPFFileFromImage(image) // PFFile column type
+        media["profileMedia"] = NSNull()
         media["author"] = PFUser.currentUser() // Pointer column type that points to PFUser
         media["caption"] = caption
         media["likesCount"] = 0
@@ -36,6 +37,21 @@ class UserMedia: NSObject {
         // Save object (following function will save the object in Parse asynchronously)
         media.saveInBackgroundWithBlock(completion)
     }
+    
+    class func postUserProfileImage(image: UIImage?, withCompletion completion: PFBooleanResultBlock?) {
+        // Create Parse object PFObject
+        let media = PFObject(className: "UserMedia")
+        
+        // Add relevant fields to the object
+        media["media"] = NSNull()
+        media["profileMedia"] = getPFFileFromImage(image) // PFFile column type
+        media["author"] = PFUser.currentUser() // Pointer column type that points to PFUser
+        media["caption"] = ""
+        
+        // Save object (following function will save the object in Parse asynchronously)
+        media.saveInBackgroundWithBlock(completion)
+    }
+
     
     /**
      Method to post user media to Parse by uploading image file

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class SubmitViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate
 {
@@ -39,7 +40,6 @@ class SubmitViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     func imagePickerController(picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
             // Get the image captured by the UIImagePickerController
-            let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
             let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
             photoImageView.image = editedImage
@@ -53,16 +53,21 @@ class SubmitViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     
     @IBAction func onSubmit(sender: AnyObject) {
         
+        // Display HUD right before the request is made
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         if (photoImageView.image != nil)
         {
             UserMedia.postUserImage(photoImageView.image, withCaption: captionField.text) { (boolean: Bool, error: NSError?) -> Void in
                 self.performSegueWithIdentifier("detailView", sender: nil)
                 print("Successfully uploaded image!")
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
             }
         }
         else
         {
             self.performSegueWithIdentifier("detailView", sender: nil)
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+
         }
         
         

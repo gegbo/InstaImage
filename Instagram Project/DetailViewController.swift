@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
 class DetailViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
     
@@ -26,15 +27,20 @@ class DetailViewController: UIViewController, UITableViewDataSource,UITableViewD
         let query = PFQuery(className: "UserMedia")
         query.orderByDescending("createdAt")
         query.includeKey("author")
+        query.whereKey("caption", notEqualTo: "")
         query.limit = 20
         
+        // Display HUD right before the request is made
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         // fetch data asynchronously
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) -> Void in
             if let posts = posts {
                 // do something with the data fetched
-                //print(posts)
+                
                 self.photos = posts
+                
                 self.tableView.reloadData()
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
             } else {
                 // handle error
                 print("Unable to attain photos from Parse")
@@ -76,20 +82,39 @@ class DetailViewController: UIViewController, UITableViewDataSource,UITableViewD
             (post: PFObject?, error: NSError?) -> Void in
             if error == nil
             {
-                let newImage = photo.valueForKey("media")! as? PFFile
-                newImage?.getDataInBackgroundWithBlock({ (image: NSData?, error: NSError?) -> Void in
-                    
-                    if error == nil
-                    {
-                        cell.photoImageView.image = UIImage(data: image!)
-                    }
-                })
+                if let newImage = photo.valueForKey("media")! as? PFFile
+                {
+                    newImage.getDataInBackgroundWithBlock({ (image: NSData?, error: NSError?) -> Void in
+                        
+                        if error == nil
+                        {
+                            cell.photoImageView.image = UIImage(data: image!)
+                        }
+                    })
+                }
+
             }
             else
             {
                 print(error)
             }
         }
+        
+        if let newImage = PFUser.currentUser()!["profileMedia"] as? PFFile
+        {
+            newImage.getDataInBackgroundWithBlock({ (image: NSData?, error: NSError?) -> Void in
+                
+                if error == nil
+                {
+                    cell.profileImageView.image = UIImage(data: image!)
+                }
+            })
+        }
+        else
+        {
+            print("error")
+        }
+
         cell.captionLabel?.text = photo.valueForKey("caption") as? String
         cell.username.text = PFUser.currentUser()!.username! as String
         
@@ -138,14 +163,31 @@ class DetailViewController: UIViewController, UITableViewDataSource,UITableViewD
         
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "toProfileView")
+        {
+            print("Going to profile page")
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! PhotoViewCell
+            
+            let indexPath = tableView.indexPathForCell(cell)
+            
+            let object = photos![indexPath!.row]
+            
+            let detailViewController = segue.destinationViewController as! ProfileViewController
+            
+            //create a user variale for tweets and then set user to tweets.user
+            let numPhotos = (photos?.count)! as Int
+        }
     }
-    */
+    
 
 }
