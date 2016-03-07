@@ -22,7 +22,7 @@ class PhotoViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        username.sizeToFit()
         profileImageView.layer.cornerRadius = 8
         profileImageView.clipsToBounds = true
     }

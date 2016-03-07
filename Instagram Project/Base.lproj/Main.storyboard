@@ -56,7 +56,7 @@
                     <connections>
                         <outlet property="passwordField" destination="yyL-rd-wgl" id="uTz-Ta-5fc"/>
                         <outlet property="usernameField" destination="Yxq-hv-p8o" id="3Sd-4E-2oN"/>
-                        <segue destination="hcs-OG-2Gc" kind="presentation" identifier="loginSegue" id="HiZ-UE-XWM"/>
+                        <segue destination="3vr-0L-NGs" kind="presentation" identifier="loginSegue" id="Ekr-bV-D12"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -66,7 +66,7 @@
         <!--Submit View Controller-->
         <scene sceneID="zfE-iJ-Srq">
             <objects>
-                <viewController storyboardIdentifier="detailViewController" id="hcs-OG-2Gc" customClass="SubmitViewController" customModule="Instagram_Project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hcs-OG-2Gc" customClass="SubmitViewController" customModule="Instagram_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PTu-wh-Gp0"/>
                         <viewControllerLayoutGuide type="bottom" id="uhB-LH-UvU"/>
@@ -119,12 +119,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aje-kL-MYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1494" y="399"/>
+            <point key="canvasLocation" x="1511" y="399"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="rF0-yk-TR7">
             <objects>
-                <viewController id="3vr-0L-NGs" customClass="DetailViewController" customModule="Instagram_Project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailViewController" id="3vr-0L-NGs" customClass="DetailViewController" customModule="Instagram_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4iQ-jK-bKo"/>
                         <viewControllerLayoutGuide type="bottom" id="HH2-P1-Xwc"/>
@@ -156,13 +156,13 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlJ-XE-dNw">
                                                     <rect key="frame" x="270" y="8" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dw-QA-Q4W">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dw-QA-Q4W">
                                                     <rect key="frame" x="66" y="8" width="79" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.25569104783516539" blue="0.53806037303664922" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -173,7 +173,7 @@
                                                     <rect key="frame" x="241" y="8" width="23" height="21"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A52-AN-JHN">
-                                                    <rect key="frame" x="66" y="8" width="79" height="21"/>
+                                                    <rect key="frame" x="66" y="8" width="167" height="21"/>
                                                     <state key="normal" title="toProfile">
                                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -210,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1cx-yo-aLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1889" y="399"/>
+            <point key="canvasLocation" x="1918" y="399"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="IV4-QV-7Zg">
@@ -335,6 +335,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xNA-WQ-LMu"/>
-        <segue reference="Ndz-By-6do"/>
     </inferredMetricsTieBreakers>
 </document>

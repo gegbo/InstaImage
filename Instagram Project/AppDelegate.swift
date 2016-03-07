@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // clientKey is not used on Parse open source unless explicitly configured
         Parse.initializeWithConfiguration(
             ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
-                configuration.applicationId = "InstagramProject"
-                configuration.clientKey = "48fj3kmd093ghcgs620d"
-                configuration.server = "https://shielded-atoll-37564.herokuapp.com/parse"
+                configuration.applicationId = "Instasnap"
+                configuration.clientKey = "8dj36la0cmzn234dlg"
+                configuration.server = "https://agile-basin-63166.herokuapp.com/parse"
             })
         )
         
