@@ -49,11 +49,12 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         {
             print("error")
         }
-
+        
     }
     
     override func viewDidAppear(animated: Bool)
     {
+        
         if let newImage = self.user["profileMedia"] as? PFFile
         {
             newImage.getDataInBackgroundWithBlock({ (image: NSData?, error: NSError?) -> Void in
@@ -70,7 +71,6 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         {
             print("error")
         }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,16 +85,16 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     func imagePickerController(picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         // Get the image captured by the UIImagePickerController
-        let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        profileImageView.image = editedImage
+        profileImageView.image = originalImage
         
         // Do something with the images (based on your use case)
         instructionLabel.hidden = true
         
         UserMedia.postUserProfileImage(profileImageView.image) { (boolean: Bool, error: NSError?) -> Void in
             print("Successfully updated profile picture")
-            self.user["profileMedia"] = UserMedia.getPFFileFromImage(editedImage)
+            self.user["profileMedia"] = UserMedia.getPFFileFromImage(originalImage)
             print(self.user)
         }
         
@@ -102,6 +102,11 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         dismissViewControllerAnimated(true, completion: nil)
     }
 
+    
+    @IBAction func onLogout(sender: AnyObject) {
+        PFUser.logOut()
+        //self.present
+    }
     /*
     // MARK: - Navigation
 

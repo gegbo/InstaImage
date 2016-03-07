@@ -96,6 +96,7 @@ class DetailViewController: UIViewController, UITableViewDataSource,UITableViewD
             }
             else
             {
+                print("I got here!")
                 print(error)
             }
         }
@@ -171,7 +172,7 @@ class DetailViewController: UIViewController, UITableViewDataSource,UITableViewD
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if (segue.identifier == "toProfileView")
+        /*if (segue.identifier == "toProfileView")
         {
             print("Going to profile page")
             let button = sender as! UIButton
@@ -183,10 +184,9 @@ class DetailViewController: UIViewController, UITableViewDataSource,UITableViewD
             let object = photos![indexPath!.row]
             
             let detailViewController = segue.destinationViewController as! ProfileViewController
-            
-            //create a user variale for tweets and then set user to tweets.user
-            let numPhotos = (photos?.count)! as Int
+        
         }
+        */
     }
     
 
